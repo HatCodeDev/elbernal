@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games @yield('title')</title>
+    <title>El Bernal @yield('title')</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand">Games</a> 
+    <a class="navbar-brand">El Bernal</a> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('games')}}">Listado</a>
+          <a class="nav-link active" aria-current="page" href="{{url('games')}}">Tipos de tostado</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('games/create')}}">Crear</a>
+          <a class="nav-link active" href="{{url('games/create')}}">Bebidas</a>
         </li>
       </ul>
     </div>

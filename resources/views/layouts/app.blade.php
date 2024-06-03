@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>El Bernal @yield('title')</title>
 
     {{-- <!-- Fonts -->
     @vite(['resources/css/app.css','resources/js/app.js']) --}}
@@ -21,11 +21,9 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    Tipos de tostado
+                    <img src="{{ asset('images/logoCafe.png') }}" width="70px" alt="Logo">
                 </a>
-                <a class="navbar-brand" href="{{ url('/games') }}">
-                    Bebidas
-                </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,7 +31,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                            Sitema de control
+                        </a>
+                        <a class="navbar-brand" href="{{ url('/games') }}">
+                            Usuarios
+                        </a>
+                        <a class="navbar-brand" href="{{ url('/games') }}">
+                            Tipos de tostado
+                        </a>
+                        <a class="navbar-brand" href="{{ url('/games') }}">
+                            Bebidas
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,4 +89,5 @@
         </main>
     </div>
 </body>
+@yield('js')
 </html>

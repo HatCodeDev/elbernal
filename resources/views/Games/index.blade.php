@@ -1,10 +1,10 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title')
     -Listado
 @endsection
 
-@section('body')
+@section('content')
     @if($msj = Session::get('success'))
         <div class="row" id="alerta">
             <div class="col-md-4 offset-md-4">

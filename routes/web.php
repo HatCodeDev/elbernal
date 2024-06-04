@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('games',App\Http\Controllers\GameController::class);
     // Otras rutas protegidas
+    Route::resource('users',App\Http\Controllers\UserController::class);
 });
 
 

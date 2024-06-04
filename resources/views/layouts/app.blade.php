@@ -34,7 +34,7 @@
                         <a class="navbar-brand" href="{{ url('/home') }}">
                             Sitema de control
                         </a>
-                        <a class="navbar-brand" href="{{ url('/games') }}">
+                        <a class="navbar-brand" href="{{ url('/users') }}">
                             Usuarios
                         </a>
                         <a class="navbar-brand" href="{{ url('/games') }}">

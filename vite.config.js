@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/js/Games/index.js',
-                'resources/css/welcome.css'
+                'resources/css/welcome.css',
+                'resources/css/style.css'
             ],
             refresh: true,
         }),

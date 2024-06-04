@@ -83,19 +83,7 @@
     }
 }
 
-
-/* .inicio{
-    padding-top: -100;
-}
-.home1{
-    z-index: 1;
-}
-.cafe2{
-    width: 500px;
-    opacity: 0.4;
-    top: -100px;
-} */
-
+/* ------ HOME ------ */
 body, html {
     margin: 0;
     padding: 0;
@@ -106,16 +94,73 @@ body, html {
     color: #ffffeb;
 }
 
+.container.inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .image-container {
     position: relative;
     width: 700px;
     height: auto;
+    margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .image-container img {
     width: 700px;
     height: auto;
     opacity: 0.5;
+}
+
+@media (max-width:720px) {
+    .image-container {
+        width: 300px;
+    }
+    
+    .image-container img {
+        width: 300px;
+        opacity: 0.5;
+    }
+    .inicio h1{
+        font-size: 30px;
+        color: #ffffeb;
+    }
+    .wrapper img{
+        width: 250px;
+        float: none;
+        margin-bottom: 20px;
+    }
+    .wrapper .desc1 p{
+        font-size: 15px;
+        margin-bottom: -200px;
+    }
+    .tarjetas{
+        width: 80%;
+        height: auto;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .card1{
+        margin-top: 300px;
+    }
+}
+
+@media (max-width:325px) {
+    .image-container {
+        width: 200px;
+    }
+    
+    .image-container img {
+        width: 200px;
+        opacity: 0.5;
+    }
+    .inicio h1{
+        font-size: 20px;
+        color: #ffffeb;
+    }
 }
 
 .overlay-text {
@@ -130,5 +175,77 @@ body, html {
 }
 
 .container {
-    padding-top: 0; /* Eliminar espacio entre la imagen y la navbar */
+    padding-top: 0;
+}
+
+.inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.wrapper{
+    margin: 150px auto;
+    margin-bottom: -70px;
+    width: 70%;
+
+}
+
+.wrapper .cafe3{
+    max-width: 320px;
+    float: left;
+    border: 4px solid green;
+    border-radius: 10px;
+    margin-right: 50px;
+}
+
+.wrapper .desc1 p{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/*------ TARJETAS ------*/
+.tarjetas{
+    margin-top: 50px;
+}
+
+
+/*------ TIPOS DE TOSTADO ------*/
+
+.tipTosta{
+    margin-top: 150px;
+}
+
+.home2 h3{
+    width: 1ch;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    animation: 3s typing steps(17) infinite alternate;
+
+}
+@keyframes typing {
+    from{width: 0ch;}
+    to{width: 17ch;}
+}
+
+/*------ BEBIDAS ------*/
+
+.bebidas{
+    margin-top: 60px;
+}
+
+.home3 h3{
+    width: 1ch;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    animation: 3s typing2 steps(8) infinite alternate;
+
+}
+@keyframes typing2 {
+    from{width: 0ch;}
+    to{width: 8ch;}
 }

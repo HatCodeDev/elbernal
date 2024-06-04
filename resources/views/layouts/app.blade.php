@@ -7,11 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<<<<<<< HEAD
-    <title>El Bernal</title>
-=======
     <title>El Bernal @yield('title')</title>
->>>>>>> 32cdf8a6ddee96c9e9d2542792328837c9697fbd
 
     {{-- <!-- Fonts -->
     @vite(['resources/css/app.css','resources/js/app.js']) --}}

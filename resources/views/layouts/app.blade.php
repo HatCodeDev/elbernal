@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>El Bernal</title>
 
     {{-- <!-- Fonts -->
     @vite(['resources/css/app.css','resources/js/app.js']) --}}

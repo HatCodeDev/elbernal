@@ -84,8 +84,8 @@
 
 /* ------ HOME ------ */
 body, html {
-    margin: 0;
-    padding: 0;
+    margin: 0px 0px 0px;
+    padding: 0px 0px 0px;
 }
 
 .inicio h1{
@@ -247,4 +247,81 @@ body, html {
 @keyframes typing2 {
     from{width: 0ch;}
     to{width: 8ch;}
+}
+
+/* FOOTER */
+.pie-pag{
+    margin-top: 100px;
+    width: 100% !important;
+    background-color: #0a141b;
+}
+
+.pie-pag .grupo1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    padding: 45px 0px;
+}
+
+.pie-pag .grupo1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-pag .grupo1 .box figure img{
+    width: 250px;
+}
+
+.pie-pag .grupo1 .box h2{
+    color: white;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.pie-pag .grupo1 .box p{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+
+.pie-pag .grupo1 .redsocial a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: white;
+    margin-right: 10px;
+    background-color: #0d2033;
+    text-align: center;
+    transition: all 300ms ease;
+}
+
+.pie-pag .grupo1 .redsocial a:hover{
+    color: aquamarine;
+}
+
+.pie-pag .grupo2{
+    background-color: #0a1a2a;
+    padding: 15px 10px;
+    text-align: center;
+    color: white;
+}
+
+.pie-pag .grupo2 small{
+    font: 15px;
+}
+
+@media screen and (max-width:800px) {
+    .pie-pag .grupo1{
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+    }
 }

@@ -13,7 +13,8 @@
     @vite(['resources/css/app.css','resources/js/app.js']) --}}
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/js/app.js','resources/sass/app.scss','resources/js/Games/index.js',
+    'resources/css/welcome.css','resources/css/style.css'])
 </head>
 <body>
     <div id="app">

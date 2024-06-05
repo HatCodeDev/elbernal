@@ -1,88 +1,82 @@
-<!-- resources/views/users/index.blade.php -->
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
-        <!------------------- Alerta ------------------------>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <!------------------- Titulo ------------------------>
-        <h1>Usuarios Registrados</h1>
-        <!------------------- Boton modal para crear usuarios ------------------------>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalUsuarios">
-            Crear usuario
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="ModalUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="ModalUsuariosLabel">Crear Usuario</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="row align-items-center my-4">
+                    <div class="col">
+                        <h2 class="h3 mb-0 page-title">Usuarios</h2>
                     </div>
-                    <div class="modal-body">
-                        @csrf
-                        @include('users.form')
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalCreate"
+                            style="color:white">
+                            <span style="color:white"></span> {{ __('New') }}
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            <!------------------- Boton modal para ver detalles ------------------------>
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                data-bs-target="#ModalDetalles">
-                                Ver
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="ModalDetalles" tabindex="-1" aria-labelledby="ModalDetallesLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="ModalDetallesLabel">Detalles</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><strong>ID:</strong> {{ $user->id }}</p>
-                                            <p><strong>Nombre:</strong> {{ $user->name }}</p>
-                                            <p><strong>Email:</strong> {{ $user->email }}</p>
-                                            <p><strong>Fecha de Registro:</strong> {{ $user->created_at }}</p>
 
-                                        </div>
-                                    </div>
-                                </div>
+                <form action="/users" method="get" role="search" class="mb-3">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="q" name="search" class="form-control"
+                                    placeholder="Search..." onkeyup="load(1)">
                             </div>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                        </div>
+                        <div class="form-group col-xs-6 col-sm-6 col-md-6 ">
+                            <button type="submit" class="btn btn-success" onclick="load(1)">search</button>
+                        </div>
+                    </div>
+                </form>
+
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <!-- table -->
+                                <table class="table datatables" id="dataTable-1">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th width="280px">{{ __('Action') }}</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach ($data as $key => $user)
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $user->id }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    <a class="btn btn-secondary"
+                                                        href="{{ route('users.show', $user->id) }}">{{ __('Show') }}</a>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#ModalEdit{{ $user->id }}">{{ __('Edit') }}</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#ModalDelete{{ $user->id }}">{{ __('Delete') }}</button>
+                                                </td>
+                                                @include('users.modal.edit')
+                                                @include('users.modal.delete')
+                                            </tr>
+                                        </tbody>
+                                    @endforeach
+                                </table>
+                                {!! $data->render() !!}
+                                <!-- end table -->
+                            </div>
+                        </div>
+                    </div> <!-- .col-md-12 -->
+                </div> <!-- end section row my-4 -->
+            </div> <!-- .col-12 -->
+        </div> <!-- .row -->
+    </div> <!-- .container-fluid -->
+    @include('users.modal.create')
 @endsection

@@ -26,20 +26,21 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed',
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|confirmed',
+    ]);
 
-        $input = $request->only(['name', 'email', 'password']);
-        $input['password'] = Hash::make($input['password']);
+    $input = $request->only(['name', 'email', 'password']);
+    $input['password'] = Hash::make($input['password']);
 
-        User::create($input);
+    User::create($input);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully');
-    }
+    return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
+}
+
 
     public function show($id)
     {
@@ -73,12 +74,12 @@ class UserController extends Controller
         $user->update($input);
     
     
-        return redirect()->route('users.index')->with('success','User updated successfully');
+        return redirect()->route('users.index')->with('success','Usuario modificado exitosamente');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('users.index')->with('success', 'Bye, Usuario eliminado exitosamente');
     }
 }

@@ -56,15 +56,18 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <a class="btn btn-secondary"
-                                                        href="{{ route('users.show', $user->id) }}">{{ __('Show') }}</a>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#ModalShow{{ $user->id }}">{{ __('Show') }}</button>
+                                                    
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#ModalEdit{{ $user->id }}">{{ __('Edit') }}</button>
+
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#ModalDelete{{ $user->id }}">{{ __('Delete') }}</button>
                                                 </td>
                                                 @include('users.modal.edit')
                                                 @include('users.modal.delete')
+                                                @include('users.modal.show')
                                             </tr>
                                         </tbody>
                                     @endforeach

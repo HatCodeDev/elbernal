@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/sass/app.scss','resources/css/app.css', 'resources/css/welcome.css', 'resources/js/app.js'])
     <title>El Bernal</title>
-    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     
@@ -141,29 +142,29 @@
               <div class="carousel-item active">
                 <img src="{{ asset('images/cafe16.jpg') }}" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>EXPRESSO</h5>
+                  <h5><b>EXPRESSO</b></h5>
                   <p><b>Café fuerte y concentrado</b></p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="{{ asset('images/cafe18.webp') }}" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>CAFÉ AMERICANO</h5>
-                  <p>Es menos fuerte que el espresso y tiene un sabor más suave</p>
+                  <h5><b>CAFÉ AMERICANO</b></h5>
+                  <p><b>Es menos fuerte que el espresso y tiene un sabor más suave</b></p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('images/cafe15.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/cafe15.jpg') }}" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>LATTE</h5>
-                  <p>Hecha con espresso y leche vaporizada</p>
+                  <h5><b>LATTE</b></h5>
+                  <p><b>Espresso y leche vaporizada</b></p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('images/cafe17.jpg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/cafe17.jpg') }}" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>CAPUCHINO</h5>
-                  <p>Hecha con espresso, leche vaporizada y espuma de leche</p>
+                  <h5><b>CAPUCHINO</b></h5>
+                  <p><b>Espresso, leche vaporizada y espuma de leche</b></p>
                 </div>
               </div>
             </div>
@@ -178,9 +179,41 @@
           </div>
         </div>
 
-    </div>
-</body>
-</html>
+      </div>
 
-
+            {{-- FOOTER --}}
+            <footer class="pie-pag">
+              <div class="grupo1">
+                <div class="box">
+                  <figure>
+                    <a href="public/resources/views/Users/home.blade.php">
+                      <img src="http://webordinario.test/images/logoCafe.png">
+                    </a>
+                  </figure>
+                </div>
+    
+                <div class="box">
+                  <h2><b>SOBRE NOSOTROS</b></h2>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, impedit.</p>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, impedit.</p>
+                </div>
+    
+                <div class="box">
+                  <h2><b>Síguenos</b></h2>
+                  <div class="redsocial">
+                    <a href="https://es-la.facebook.com/login.php/" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.tiktok.com/login?lang=es" target="_blank"  ><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.instagram.com/accounts/login/" target="_blank" ><i class="bi bi-instagram"></i></a>
+                    <a href="https://x.com/?lang=es"><i class="bi bi-twitter-x" target="_blank" ></i></a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="grupo2">
+                <small><i class="bi bi-c-circle"></i> 2024 <b>El Bernal</b> - Todos los derechos están reservados</small>
+              </div>
+    
+            </footer>
+    </body>
+  </html>
 @endsection

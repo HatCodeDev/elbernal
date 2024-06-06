@@ -14,9 +14,9 @@
                         </button>
                     </div>
                 </div>
+            </div>
 
-
-                <form action="/users" method="get" role="search" class="mb-3">
+                {{-- <form action="/users" method="get" role="search" class="mb-3">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
@@ -28,7 +28,7 @@
                             <button type="submit" class="btn btn-success" onclick="load(1)">search</button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
 
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
@@ -39,40 +39,41 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-body">
+                                <a href="{{ url('/generate-pdf') }}" class="btn btn-dark"><i class="bi bi-arrow-bar-down"></i></a>
                                 <!-- table -->
-                                <table class="table datatables" id="dataTable-1">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Email') }}</th>
-                                            <th width="280px">{{ __('Action') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($data as $key => $user)
-                                        <tbody>
+                                    <tbody>
+                                            @foreach ($data as $key => $user)
                                             <tr>
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalShow{{ $user->id }}">{{ __('Show') }}</button>
+                                                    data-bs-target="#ModalShow{{$user->id}}">{{ __('Show') }}</button>
                                                     
                                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalEdit{{ $user->id }}">{{ __('Edit') }}</button>
+                                                    data-bs-target="#ModalEdit{{$user->id}}">{{ __('Edit') }}</button>
 
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#ModalDelete{{ $user->id }}">{{ __('Delete') }}</button>
+                                                        data-bs-target="#ModalDelete{{$user->id}}">{{ __('Delete') }}</button>
                                                 </td>
                                                 @include('users.modal.edit')
                                                 @include('users.modal.delete')
                                                 @include('users.modal.show')
                                             </tr>
+                                        @endforeach
                                         </tbody>
-                                    @endforeach
                                 </table>
-                                {!! $data->render() !!}
+                                {{-- {!! $data->render() !!} --}}
                                 <!-- end table -->
                             </div>
                         </div>

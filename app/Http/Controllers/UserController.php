@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,17 +9,11 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
-    {
-        if ($request->search == "") {
-            $data = User::orderBy('id', 'DESC')->paginate(5);
-            return view('users.index', compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
-        } else {
-            $data = User::where('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
-            $data->appends($request->only('users.index'));
-            return view('users.index', compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
-        }
-    }
+    public function index()
+{
+    $data = User::get(); // Obtener todos los usuarios sin ordenar
+    return view('users.index', compact('data'));
+}
 
     public function create()
     {
@@ -26,21 +21,20 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|confirmed',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed',
+        ]);
 
-    $input = $request->only(['name', 'email', 'password']);
-    $input['password'] = Hash::make($input['password']);
+        $input = $request->only(['name', 'email', 'password']);
+        $input['password'] = Hash::make($input['password']);
 
-    User::create($input);
+        User::create($input);
 
-    return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
-}
-
+        return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
+    }
 
     public function show($id)
     {
@@ -54,7 +48,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',

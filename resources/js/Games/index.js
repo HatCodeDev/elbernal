@@ -13,8 +13,8 @@ window.setInfo = (id,nombre) => {
     lbl_nombre.innerHTML = 'Eliminarás el videojuego: <b>'+nombre+'</b>';
 }
 
-btnEliminar.addEventListener('click', ()=>{
-    let id = btnEliminar.getAttribute('data-id');
-    let form = document.querySelector('#frm_'+id);
-    form.submit();
-});
+// btnEliminar.addEventListener('click', ()=>{
+//     let id = btnEliminar.getAttribute('data-id');
+//     let form = document.querySelector('#frm_'+id);
+//     form.submit();
+// });

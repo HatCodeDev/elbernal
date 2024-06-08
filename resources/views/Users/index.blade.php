@@ -16,20 +16,6 @@
                 </div>
             </div>
 
-                {{-- <form action="/users" method="get" role="search" class="mb-3">
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <input type="text" id="q" name="search" class="form-control"
-                                    placeholder="Search..." onkeyup="load(1)">
-                            </div>
-                        </div>
-                        <div class="form-group col-xs-6 col-sm-6 col-md-6 ">
-                            <button type="submit" class="btn btn-success" onclick="load(1)">search</button>
-                        </div>
-                    </div>
-                </form> --}}
-
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
@@ -58,13 +44,13 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalShow{{$user->id}}">{{ __('Show') }}</button>
+                                                    data-bs-target="#ModalShow{{$user->id}}"><i class="fa-solid fa-circle-info"></i></button>
                                                     
                                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalEdit{{$user->id}}">{{ __('Edit') }}</button>
+                                                    data-bs-target="#ModalEdit{{$user->id}}"><i class="fa-solid fa-pen-to-square"></i></button>
 
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#ModalDelete{{$user->id}}">{{ __('Delete') }}</button>
+                                                        data-bs-target="#ModalDelete{{$user->id}}"><i class="fa-solid fa-trash"></i></button>
                                                 </td>
                                                 @include('users.modal.edit')
                                                 @include('users.modal.delete')

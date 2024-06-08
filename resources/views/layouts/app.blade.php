@@ -9,8 +9,6 @@
 
     <title>El Bernal @yield('title')</title>
 
-    {{-- <!-- Fonts -->
-    @vite(['resources/css/app.css','resources/js/app.js']) --}}
 
     <!-- Scripts -->
     @vite(['resources/css/app.css','resources/js/app.js','resources/sass/app.scss','resources/js/Games/index.js',
@@ -38,14 +36,14 @@
                         <a class="navbar-brand" href="{{ url('/users') }}">
                             Usuarios
                         </a>
-                        <a class="navbar-brand" href="{{ url('/games') }}">
+                        <a class="navbar-brand" href="{{ url('/tostados') }}">
                             Tipos de tostado
                         </a>
                         <a class="navbar-brand" href="{{ url('/games') }}">
                             Bebidas
                         </a>
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

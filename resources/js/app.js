@@ -1,5 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
-import 'bootstrap'
+
 
 
  import DataTable from 'datatables.net-dt';

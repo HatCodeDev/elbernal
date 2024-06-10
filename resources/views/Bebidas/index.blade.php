@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row align-items-center my-4">
                     <div class="col">
-                        <h2 class="h3 mb-0 page-title">Tipos de Tostado</h2>
+                        <h2 class="h3 mb-0 page-title">Tipos de Bebida</h2>
                     </div>
                     <div class="col-auto">
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalCreate"
@@ -27,34 +27,51 @@
                 <div class="col-md-12">
                     <div class="card shadow">
                         <div class="card-body">
-                            <a href="{{ url('/generateTostadoPDF') }}" class="btn btn-dark"><i class="bi bi-arrow-bar-down"></i></a>
                             <!-- table -->
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ __('Tipo de tostado') }}</th>
-                                        <th width="280px">{{ __('Acción') }}</th>
+                                        <th>Tipo</th>
+                                        <th>Tostado</th>
+                                        <th>Precio</th>
+                                        <th>Filtración</th>
+                                        <th>Tamaño</th>
+                                        <th>Complementos</th>
+                                        <th>Imagen</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $key => $tostado)
+                                    @foreach ($bebidas as $key => $bebida)
                                         <tr>
-                                            <td>{{ $tostado->id }}</td>
-                                            <td>{{ $tostado->tostado }}</td>
+                                            <td>{{ $bebida->id }}</td>
+                                            <td>{{ $bebida->tipo }}</td>
+                                            <td>{{ $bebida->tostado->tostado }}</td>
+                                            <td>{{ $bebida->precio }}</td>
+                                            <td>{{ $bebida->filtracion }}</td>
+                                            <td>{{ $bebida->altura }}</td>
+                                            <td>{{ $bebida->complementos }}</td>
+                                            <td>
+                                                @if ($bebida->imagen)
+                                                <img class="rounded" src="{{ asset('storage/' . $bebida->imagen) }}" width="50">
+                                                @else
+                                                    No Image
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalShow{{$tostado->id}}"><i class="fa-solid fa-circle-info"></i></button>
+                                                    data-bs-target="#ModalShow{{$bebida->id}}"><i class="fa-solid fa-circle-info"></i></button>
                                                 
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalEdit{{$tostado->id}}"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    data-bs-target="#ModalEdit{{$bebida->id}}"><i class="fa-solid fa-pen-to-square"></i></button>
 
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#ModalDelete{{$tostado->id}}"><i class="fa-solid fa-trash"></i></button>
+                                                    data-bs-target="#ModalDelete{{$bebida->id}}"><i class="fa-solid fa-trash"></i></button>
                                             </td>
-                                            @include('tostados.modal.edit')
-                                            @include('tostados.modal.delete')
-                                            @include('tostados.modal.show')
+                                            @include('bebidas.modal.edit')
+                                            @include('bebidas.modal.delete')
+                                            @include('bebidas.modal.show')
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -66,5 +83,5 @@
             </div> <!-- end section row my-4 -->
         </div> <!-- .col-12 -->
     </div> <!-- .row -->
-    @include('tostados.modal.create')
+    @include('bebidas.modal.create')
 @endsection

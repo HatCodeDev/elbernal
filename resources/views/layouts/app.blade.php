@@ -39,7 +39,7 @@
                         <a class="navbar-brand" href="{{ url('/tostados') }}">
                             Tipos de tostado
                         </a>
-                        <a class="navbar-brand" href="{{ url('/games') }}">
+                        <a class="navbar-brand" href="{{ url('/bebidas') }}">
                             Bebidas
                         </a>
                     </ul>

@@ -13,7 +13,7 @@
                     <div class="mb-3">
                         <label for="tostado" class="col-form-label">{{ __('Nombre') }}</label>
                         <input type="text" name="tostado" value="{{ $tostado->tostado }}" placeholder="Nombre"
-                            class="form-control" required>
+                            class="form-control" required maxlength="150">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-warning">{{ __('Editar') }}</button>

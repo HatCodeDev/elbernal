@@ -20,7 +20,7 @@
 
                     <div class="mb-3">
                         <label for="tostado" class="col-form-label">{{ __('Nombre') }}</label>
-                        <input type="text" name="tostado" placeholder="Nombre" class="form-control" id="tostado" required>
+                        <input type="text" name="tostado" placeholder="Nombre" class="form-control" id="tostado" required maxlength="150">
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -1,15 +1,33 @@
-<div class="modal fade" id="ModalShow{{$tostado->id}}" tabindex="-1" aria-labelledby="ModalShowLabel" aria-hidden="true">
+<div class="modal fade" id="ModalShow{{$bebida->id}}" tabindex="-1" aria-labelledby="ModalShowLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalEditLabel">Detalles del Tostado</h1>
+                <h1 class="modal-title fs-5" id="ModalShowLabel">Detalles de la Bebida</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-5">{{ __('Nombre') }}</h2>
-                <p>{{ $tostado->tostado }}</p>
-                <h2 class="fs-5">{{ __('Fecha de Creación') }}</h2>
-                <p>{{ $tostado->created_at->format('d/m/Y H:i:s') }}</p>
+                <div class="row row-cols-1 row-cols-sm-2">
+                    <div class="col">
+                        <h2 class="fs-5">Tipo</h2>
+                        <p>{{ $bebida->tipo }}</p>
+                        <h2 class="fs-5">Tostado</h2>
+                        <p>{{ $bebida->tostado->tostado }}</p>
+                        <h2 class="fs-5">Precio</h2>
+                        <p>{{ $bebida->precio }}</p>
+                        <h2 class="fs-5">Filtración</h2>
+                        <p>{{ $bebida->filtracion }}</p>
+                        <h2 class="fs-5">Tamaño</h2>
+                        <p>{{ $bebida->altura }}</p>
+                        <h2 class="fs-5">Complementos</h2>
+                        <p>{{ $bebida->complementos }}</p>
+                    </div>
+                    <div class="col">
+                        <img class="rounded img-fluid" src="{{ asset('storage/' . $bebida->imagen) }}">
+                    </div>
+                </div>
+                
+
+                <!-- Agrega más campos según sea necesario -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cerrar') }}</button>

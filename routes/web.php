@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     // Otras rutas protegidas
     Route::resource('users',App\Http\Controllers\UserController::class);
     Route::resource('tostados',App\Http\Controllers\TostadoController::class);
+    Route::resource('bebidas',App\Http\Controllers\BebidaController::class);
     
 });
 

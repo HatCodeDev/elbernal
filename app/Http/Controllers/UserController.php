@@ -1,79 +1,111 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    /**
+     * Mostrar una lista de usuarios.
+     */
     public function index()
     {
-        $data = User::get(); // Obtener todos los usuarios sin ordenar
+        $data = User::all();
         return view('users.index', compact('data'));
     }
 
+    /**
+     * Mostrar el formulario para crear un nuevo usuario.
+     */
     public function create()
     {
         return view('users.create');
     }
 
+    /**
+     * Guardar un nuevo usuario.
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $input = $request->only(['name', 'email', 'password']);
-        $input['password'] = Hash::make($input['password']);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
-        User::create($input);
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $user->imagen = 'images/' . $imageName;
+        }
+
+        $user->save();
 
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
     }
 
-    public function show($id)
+    /**
+     * Mostrar el formulario para editar un usuario.
+     */
+    public function edit(User $user)
     {
-        $user = User::find($id);
-        return view('users.show', compact('user'));
-    }
-
-    public function edit($id)
-    {
-        $user = User::find($id);
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Actualizar un usuario.
+     */
+    public function update(Request $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'same:confirm-password',
-
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $input = $request->all();
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
         }
 
-        $user = User::find($id);
-        $user->update($input);
+        if ($request->hasFile('imagen')) {
+            if ($user->imagen) {
+                Storage::delete('public/' . $user->imagen);
+            }
+            $image = $request->file('imagen');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $user->imagen = 'images/' . $imageName;
+        }
 
+        $user->save();
 
-        return redirect()->route('users.index')->with('success', 'Usuario modificado exitosamente');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
     }
 
-    public function destroy($id)
+    /**
+     * Eliminar un usuario.
+     */
+    public function destroy(User $user)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')->with('success', 'Bye, Usuario eliminado exitosamente');
+        if ($user->imagen) {
+            Storage::delete('public/' . $user->imagen);
+        }
+
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente');
     }
 }

@@ -18,32 +18,39 @@ class PDFController extends Controller
     }
 
     public function generatePDF()
-    {
-        $users = User::all();
+{
+    $users = User::all();
 
-        $this->fpdf->AddPage();
-        $this->fpdf->SetFont('Arial', 'B', 12);
+    $this->fpdf->AddPage();
+    $this->fpdf->SetFont('Arial', 'B', 12);
 
-        // Títulos de las columnas
-        $this->fpdf->Cell(10, 10, '#', 1);
-        $this->fpdf->Cell(50, 10, 'Name', 1);
-        $this->fpdf->Cell(80, 10, 'Email', 1);
-        // $this->fpdf->Cell(50, 10, 'Action', 1);
-        $this->fpdf->Ln();
+    // Títulos de las columnas
+    $this->fpdf->Cell(10, 10, '#', 1);
+    $this->fpdf->Cell(50, 10, 'Name', 1);
+    $this->fpdf->Cell(80, 10, 'Email', 1);
+    $this->fpdf->Cell(50, 10, 'Image', 1); // Nueva columna para la imagen
+    $this->fpdf->Ln();
 
-        // Datos de los usuarios
-        foreach ($users as $user) {
-            $this->fpdf->Cell(10, 10, $user->id, 1);
-            $this->fpdf->Cell(50, 10, $user->name, 1);
-            $this->fpdf->Cell(80, 10, $user->email, 1);
-            // $this->fpdf->Cell(50, 10, 'Show | Edit | Delete', 1); // Ajusta según tus necesidades
-            $this->fpdf->Ln();
+    // Datos de los usuarios
+    foreach ($users as $user) {
+        $this->fpdf->Cell(10, 10, $user->id, 1);
+        $this->fpdf->Cell(50, 10, $user->name, 1);
+        $this->fpdf->Cell(80, 10, $user->email, 1);
+
+        // Agregar la imagen de perfil si existe
+        if ($user->imagen) {
+            $this->fpdf->Cell(50, 10, $this->fpdf->Image(public_path('storage/' . $user->imagen), $this->fpdf->GetX(), $this->fpdf->GetY(), 10), 1);
+        } else {
+            $this->fpdf->Cell(50, 10, 'No Image', 1);
         }
 
-        $this->fpdf->Output();
-
-        exit;
+        $this->fpdf->Ln();
     }
+
+    $this->fpdf->Output();
+
+    exit;
+}
 
     public function generateTostadoPDF()
     {

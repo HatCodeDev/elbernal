@@ -27,6 +27,10 @@
                         <input type="email" name="email" placeholder="Email" class="form-control" id="mail" required>
                     </div>
                     <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="password" class="col-form-label">Contraseña</label>
                         <input type="password" name="password" placeholder="Password" class="form-control" id="password" required>
                     </div>

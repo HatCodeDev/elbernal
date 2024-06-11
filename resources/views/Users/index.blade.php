@@ -33,6 +33,7 @@
                                             <th>#</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Imagen') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -42,6 +43,13 @@
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td>
+                                                    @if ($user->imagen)
+                                                        <img class="rounded" src="{{ asset('storage/' . $user->imagen) }}" width="50">
+                                                    @else
+                                                        No Image
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#ModalShow{{$user->id}}"><i class="fa-solid fa-circle-info"></i></button>

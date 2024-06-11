@@ -181,39 +181,7 @@
 
       </div>
 
-            {{-- FOOTER --}}
-            <footer class="pie-pag">
-              <div class="grupo1">
-                <div class="box">
-                  <figure>
-                    <a href="public/resources/views/Users/home.blade.php">
-                      <img src="http://webordinario.test/images/logoCafe.png">
-                    </a>
-                  </figure>
-                </div>
-    
-                <div class="box">
-                  <h2><b>SOBRE NOSOTROS</b></h2>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, impedit.</p>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic, impedit.</p>
-                </div>
-    
-                <div class="box">
-                  <h2><b>Síguenos</b></h2>
-                  <div class="redsocial">
-                    <a href="https://es-la.facebook.com/login.php/" target="_blank"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.tiktok.com/login?lang=es" target="_blank"  ><i class="bi bi-tiktok"></i></a>
-                    <a href="https://www.instagram.com/accounts/login/" target="_blank" ><i class="bi bi-instagram"></i></a>
-                    <a href="https://x.com/?lang=es"><i class="bi bi-twitter-x" target="_blank" ></i></a>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="grupo2">
-                <small><i class="bi bi-c-circle"></i> 2024 <b>El Bernal</b> - Todos los derechos están reservados</small>
-              </div>
-    
-            </footer>
+            
     </body>
   </html>
 @endsection

@@ -30,6 +30,10 @@
                         <input type="password" name="confirm-password" placeholder="Confirm Password"
                             class="form-control">
                     </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen">
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-warning">Editar</button>
                     </div>

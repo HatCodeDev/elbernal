@@ -32,3 +32,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Ruta para generar el PDF
 Route::get('/generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF']);
 Route::get('/generateTostadoPDF', [App\Http\Controllers\PDFController::class, 'generateTostadoPDF']);
+Route::get('/pdf/generateBebidaPDF', [App\Http\Controllers\PDFController::class, 'generateBebidaPDF']);

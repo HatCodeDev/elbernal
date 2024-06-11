@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="row align-items-center my-4">
+                <div class="row align-items-center my-4 ms-5 me-5">
                     <div class="col">
                         <h2 class="h3 mb-0 page-title">Tipos de Bebida</h2>
                     </div>
@@ -27,6 +27,7 @@
                 <div class="col-md-12">
                     <div class="card shadow">
                         <div class="card-body">
+                            <a href="{{ url('/pdf/generateBebidaPDF') }}" class="btn btn-dark"><i class="bi bi-arrow-bar-down"></i></a>
                             <!-- table -->
                             <table class="table">
                                 <thead>

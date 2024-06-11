@@ -36,30 +36,31 @@ class BebidaController extends Controller
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para la imagen
         ]);
 
-        $bebida = Bebida::create($request->all());
+        try {
+            $bebida = new Bebida();
+            $bebida->tipo = $request->tipo;
+            $bebida->tostados_id = $request->tostados_id;
+            $bebida->precio = $request->precio;
+            $bebida->filtracion = $request->filtracion;
+            $bebida->altura = $request->altura;
+            $bebida->complementos = $request->complementos;
 
-        if ($request->hasFile('imagen')) {
-            try {
-                // Generar el nombre de la imagen
-                $nombre = $bebida->id . '.' . $request->file('imagen')->getClientOriginalExtension();
-                // dd('Nombre del archivo: ' . $nombre);
-                // Intentar almacenar la imagen
-                $request->file('image')->storeAs('public/img',$nombre);
-    
-                // Guardar la ruta de la imagen en la base de datos
-                $bebida->imagen = 'storage/img/' . $nombre; // Ruta accesible públicamente
-                $bebida->save();
-    
-                // Verificar la ruta en la base de datos
-                // dd('Ruta en la base de datos: ' . $bebida->imagen);
-            } catch (\Exception $e) {
-                // Capturar cualquier error durante el almacenamiento
-                return redirect()->route('bebidas.index')->with('error', 'Error al cargar la imagen: ' . $e->getMessage());
+            if ($request->hasFile('imagen')) {
+                $imagen = $request->file('imagen');
+                $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
+                $ruta = 'public/imgProducto/';
+                $imagen->storeAs($ruta, $nombreImagen);
+                $bebida->imagen = '/imgProducto/' . $nombreImagen;
             }
-        }
 
-        return redirect()->route('bebidas.index')->with('success', 'Bebida creada exitosamente');
+            $bebida->save();
+
+            return redirect()->route('bebidas.index')->with('success', 'Bebida creada exitosamente');
+        } catch (\Exception $e) {
+            return redirect()->route('bebidas.index')->with('error', 'Error al crear la bebida: ' . $e->getMessage());
+        }
     }
+
 
 
     public function show($id)
@@ -78,7 +79,7 @@ class BebidaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'tipo' => 'required|max:80',
             'tostados_id' => 'required|exists:tostados,id',
             'precio' => 'required|numeric',
@@ -86,37 +87,45 @@ class BebidaController extends Controller
             'altura' => 'required|max:50',
             'complementos' => 'required|max:100',
             'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para la imagen
-            // Agrega más validaciones según sea necesario
         ]);
 
-        $bebida = Bebida::findOrFail($id);
+        try {
+            $bebida = Bebida::findOrFail($id);
 
-        // Verificar si se envió una nueva imagen
-        if ($request->hasFile('imagen')) {
-            // Eliminar la imagen anterior si existe
-            if ($bebida->imagen) {
-                Storage::disk('public')->delete($bebida->imagen);
+            // Actualizar los campos excepto la imagen
+            $bebida->tipo = $request->tipo;
+            $bebida->tostados_id = $request->tostados_id;
+            $bebida->precio = $request->precio;
+            $bebida->filtracion = $request->filtracion;
+            $bebida->altura = $request->altura;
+            $bebida->complementos = $request->complementos;
+
+            // Verificar si se envió una nueva imagen
+            if ($request->hasFile('imagen')) {
+                // Eliminar la imagen anterior si existe
+                if ($bebida->imagen) {
+                    // Obtiene la ruta relativa correcta
+                    $imagenPath = str_replace('/storage/', 'public/', $bebida->imagen);
+                    Storage::delete($imagenPath);
+                }
+
+                // Procesar la nueva imagen y guardarla
+                $imagen = $request->file('imagen');
+                $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
+                $ruta = 'public/imgProducto/';
+                $imagen->storeAs($ruta, $nombreImagen);
+
+                // Actualizar la imagen en la base de datos
+                $bebida->imagen = '/imgProducto/' . $nombreImagen;
             }
 
-            // Procesar la nueva imagen y guardarla
-            $imagenPath = $request->file('imagen')->store('imgProducto', 'public');
+            // Guardar los cambios
+            $bebida->save();
 
-            // Actualizar la imagen en la base de datos
-            $bebida->imagen = $imagenPath;
+            return redirect()->route('bebidas.index')->with('success', 'Bebida modificada exitosamente');
+        } catch (\Exception $e) {
+            return redirect()->route('bebidas.index')->with('error', 'Error al modificar la bebida: ' . $e->getMessage());
         }
-
-        // Actualizar los demás campos
-        $bebida->tipo = $request->tipo;
-        $bebida->tostados_id = $request->tostados_id;
-        $bebida->precio = $request->precio;
-        $bebida->filtracion = $request->filtracion;
-        $bebida->altura = $request->altura;
-        $bebida->complementos = $request->complementos;
-
-        // Guardar los cambios
-        $bebida->save();
-
-        return redirect()->route('bebidas.index')->with('success', 'Bebida modificada exitosamente');
     }
 
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tostado;
+use App\Models\Bebida;
 use Illuminate\Http\Request;
+
 
 class TostadoController extends Controller
 {
@@ -63,9 +65,14 @@ class TostadoController extends Controller
 
     public function destroy($id)
     {
+        if (Bebida::where('tostados_id', $id)->count() > 0) {
+            session()->flash('error', 'No se pudo eliminar porque existen registros');
+            return redirect()->route('tostados.index');   
+        }
+    
         $tostado = Tostado::find($id);
         $tostado->delete();
-
+    
         return redirect()->route('tostados.index')->with('success', 'Tipo de tostado eliminado exitosamente');
     }
 }

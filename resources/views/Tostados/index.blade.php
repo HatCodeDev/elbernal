@@ -23,6 +23,13 @@
                 </div>
             @endif
 
+
+            @if ($message = Session::get('error'))
+            <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
+
             <div class="row mt-5">
                 <div class="col-md-12">
                     <div class="card shadow">

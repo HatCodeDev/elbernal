@@ -52,7 +52,7 @@ class BebidaFactory extends Factory
         return [
             'tipo' => $this->faker->randomElement($tiposDeCafe),
             'tostados_id' => $this->faker->numberBetween(1,15),
-            'precio' => $this->faker->randomFloat(2, 50, 180), // Precio entre 50.00 y 180
+            'precio' => $this->faker->randomFloat(2, 50, 180), 
             'filtracion' => $this->faker->randomElement($metodosDeFiltracion),
             'altura' => $this->faker->randomElement(['Pequeño', 'Mediano', 'Grande']),
             'complementos' => $this->faker->randomElement($complementosDeCafe),

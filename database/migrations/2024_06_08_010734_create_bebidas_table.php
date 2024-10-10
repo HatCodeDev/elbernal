@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('tipo',80);
             $table->foreignId('tostados_id')->constrained('tostados')->onUpdate('cascade')->onDelete('restrict');
-            $table->decimal('precio', 5, 2); // Precio con 5 dígitos en total y 2 decimales
+            $table->decimal('precio', 5, 2); 
             $table->string('filtracion', 100); 
-            $table->string('altura', 50); // Tamaño
+            $table->string('altura', 50); 
             $table->string('complementos',100);
             $table->string('imagen',100);
             $table->timestamps();

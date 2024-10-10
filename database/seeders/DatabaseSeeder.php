@@ -39,6 +39,6 @@ class DatabaseSeeder extends Seeder
         }
 
         // Crear 50 registros de Bebida
-        Bebida::factory(50)->create();
+        Bebida::factory(10)->create();
     }
 }

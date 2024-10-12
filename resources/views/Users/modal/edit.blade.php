@@ -26,8 +26,8 @@
                         <input type="password" name="password" placeholder="Password" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="confirm-password" class="col-form-label">Confirmar contraseña</label>
-                        <input type="password" name="confirm-password" placeholder="Confirm Password"
+                        <label for="password_confirmation" class="col-form-label">Confirmar contraseña</label>
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password"
                             class="form-control">
                     </div>
                     <div class="mb-3">

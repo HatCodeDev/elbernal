@@ -56,7 +56,7 @@ class BebidaFactory extends Factory
             'filtracion' => $this->faker->randomElement($metodosDeFiltracion),
             'altura' => $this->faker->randomElement(['Pequeño', 'Mediano', 'Grande']),
             'complementos' => $this->faker->randomElement($complementosDeCafe),
-            'imagen' => '/imgProducto/example.png',
+            'imagen' => 'Imagen sin definir',
         ];
     }
 }

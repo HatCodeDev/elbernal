@@ -12,8 +12,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logoCafe.ico') }}" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css','resources/js/app.js','resources/sass/app.scss','resources/js/Games/index.js',
-    'resources/css/welcome.css','resources/css/style.css'])
+    @vite(['resources/css/app.css','resources/js/app.js','resources/css/welcome.css','resources/css/style.css'])
 </head>
 <body>
     <div id="app">

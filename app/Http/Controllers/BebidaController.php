@@ -86,7 +86,7 @@ class BebidaController extends Controller
             'filtracion' => 'required|max:100',
             'altura' => 'required|max:50',
             'complementos' => 'required|max:100',
-            'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación para la imagen
+            'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
 
         try {
@@ -100,23 +100,21 @@ class BebidaController extends Controller
             $bebida->altura = $request->altura;
             $bebida->complementos = $request->complementos;
 
-            // Verificar si se envió una nueva imagen
             if ($request->hasFile('imagen')) {
                 // Eliminar la imagen anterior si existe
                 if ($bebida->imagen) {
-                    // Obtiene la ruta relativa correcta
-                    $imagenPath = str_replace('/storage/', 'public/', $bebida->imagen);
-                    Storage::delete($imagenPath);
+                    // Obtiene la ruta correcta y elimina la imagen anterior
+                    Storage::delete('public/' . $bebida->imagen); // Ajusta la ruta para eliminar correctamente la imagen anterior
                 }
-
+            
                 // Procesar la nueva imagen y guardarla
                 $imagen = $request->file('imagen');
                 $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
                 $ruta = 'public/imgProducto/';
                 $imagen->storeAs($ruta, $nombreImagen);
-
-                // Actualizar la imagen en la base de datos
-                $bebida->imagen = '/imgProducto/' . $nombreImagen;
+            
+                // Actualizar la imagen en la base de datos (guarda la ruta sin 'public/')
+                $bebida->imagen = 'imgProducto/' . $nombreImagen;
             }
 
             // Guardar los cambios

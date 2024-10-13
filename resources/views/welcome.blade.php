@@ -61,7 +61,7 @@
         <div class="hero__content h-100 container-custom position-relative m-5">
             <div class="d-flex h-100 align-items-center hero__content-width">
                 <div class="text-white">
-                    <h1 class="hero__heading fw-bold mb-4">Descubre el sabor uténtico del café en el Bernal</h1>
+                    <h1 class="hero__heading fw-bold mb-4">Descubre el sabor Auténtico del café en el Bernal</h1>
                     <p class="lead mb-4">Una cafeteria de especialidad en la que elijes tu metodo de filtración</p>
                     <a href="#" class="mt-2 btn btn-lg btn-outline-light" role="button">Reserva ya</a>
                 </div>

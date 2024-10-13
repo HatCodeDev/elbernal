@@ -16,7 +16,11 @@
                         <p>{{ $user->created_at->format('d/m/Y H:i:s') }}</p>
                     </div>
                     <div class="col">
-                        <img class="rounded img-fluid" src="{{ asset('storage/' . $user->imagen) }}">
+                        @if ($user->imagen)
+                            <img class="rounded img-fluid" src="{{ asset('storage/' . $user->imagen) }}">
+                        @else
+                            No Image
+                        @endif
                     </div>
                 </div>
 

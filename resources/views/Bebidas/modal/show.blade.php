@@ -22,7 +22,11 @@
                         <p>{{ $bebida->complementos }}</p>
                     </div>
                     <div class="col">
+                        @if(Str::contains($bebida->imagen, 'Imagen sin definir'))
+                            <p>{{ $bebida->imagen }}</p>
+                        @else
                         <img class="rounded img-fluid" src="{{ asset('storage/' . $bebida->imagen) }}">
+                        @endif
                     </div>
                 </div>
                 

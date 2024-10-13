@@ -16,12 +16,13 @@
                     </div>
                 </div>
             </div>
-
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+            <div class="col-12">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+            </div>
 
             <div class="row mt-5">
                 <div class="col-md-12">
@@ -54,11 +55,16 @@
                                             <td>{{ $bebida->altura }}</td>
                                             <td>{{ $bebida->complementos }}</td>
                                             <td>
-                                                @if ($bebida->imagen)
+                                                @if(Str::contains($bebida->imagen, 'Imagen sin definir'))
+                                                    <p>{{ $bebida->imagen }}</p>
+                                                @else
+                                                    <img class="rounded" src="{{ asset('storage/' . $bebida->imagen) }}" width="50">
+                                                @endif
+                                                {{-- @if ($bebida->imagen)
                                                 <img class="rounded" src="{{ asset('storage/' . $bebida->imagen) }}" width="50">
                                                 @else
                                                     No Image
-                                                @endif
+                                                @endif --}}
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
